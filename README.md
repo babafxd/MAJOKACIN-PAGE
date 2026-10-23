@@ -54,9 +54,14 @@ Sitio web oficial de **Majokacin**, orientado al cuidado de la belleza, cosméti
 
 ---
 
-## 🚀 Cómo Probar el Proyecto
+## 🚀 Enlaces y Despliegue
 
-El servidor local se encuentra activo:
+- **Producción Vercel:** [https://majokacin.vercel.app](https://majokacin.vercel.app)
+- **Repositorio GitHub:** [https://github.com/babafxd/MAJOKACIN-PAGE](https://github.com/babafxd/MAJOKACIN-PAGE)
+
+---
+
+## 💻 Desarrollo Local
 
 - **Local:** [http://localhost:5180/](http://localhost:5180/)
 - **Red local (móvil u otros dispositivos):** [http://192.168.3.234:5180/](http://192.168.3.234:5180/)
