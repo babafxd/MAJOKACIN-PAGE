@@ -44,6 +44,13 @@ html, body {
   outline-offset: 4px;
 }
 
+/* Margen superior para navegación fluida y relajante sin solapamientos */
+section[id],
+header[id],
+footer[id] {
+  scroll-margin-top: 80px;
+}
+
 .container {
   width: 100%;
   max-width: 1240px;
@@ -1058,11 +1065,10 @@ h1 em {
    SECCIÓN CATÁLOGOS DIGITALES & PDF (ÉSIKA, YANBAL, DUBU SAC, NATURA)
    ========================================================================== */
 .section-catalogos {
-  background-color: #fff7f2;
+  background: linear-gradient(180deg, #fffaf6 0%, #fff7f2 100%);
   color: var(--color-text);
   padding: 105px 0 115px;
   position: relative;
-  border-top: 1px solid rgba(247, 85, 145, 0.12);
 }
 
 .catalogos-grid {
@@ -1897,8 +1903,8 @@ h1 em {
 .site-footer {
   background: linear-gradient(180deg, #46102a 0%, #360a20 100%);
   color: var(--color-cream-soft);
-  padding: 90px 0 40px;
-  border-top: 1px solid rgba(247, 85, 145, 0.2);
+  padding: 60px 0 40px;
+  position: relative;
 }
 
 .footer-top {
@@ -2075,6 +2081,383 @@ h1 em {
 }
 
 /* ==========================================================================
+   BARRA DE NAVEGACIÓN FLOTANTE ELEGANTE CON GLASSMORPHISM (SCROLL)
+   ========================================================================== */
+.floating-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  background: rgba(65, 15, 38, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(247, 85, 145, 0.28);
+  box-shadow: 0 10px 32px rgba(40, 10, 22, 0.24);
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+.floating-nav.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.floating-nav-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 10px 5%;
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.floating-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.floating-brand:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+.floating-logo-img {
+  height: 40px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+.floating-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.floating-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--color-cream);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+
+.floating-link:hover {
+  color: #ffffff;
+  background-color: rgba(247, 85, 145, 0.2);
+  transform: translateY(-1px);
+}
+
+.floating-link.active {
+  color: #ffffff;
+  font-weight: 600;
+  background-color: rgba(247, 85, 145, 0.32);
+  border: 1px solid rgba(247, 85, 145, 0.5);
+  box-shadow: 0 4px 14px rgba(247, 85, 145, 0.25);
+}
+
+.floating-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.floating-cart-btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #f75591;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 14px rgba(247, 85, 145, 0.35);
+}
+
+.floating-cart-btn:hover {
+  background-color: #ff74a5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(247, 85, 145, 0.45);
+}
+
+.floating-cart-btn .cart-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.floating-cart-btn .cart-badge {
+  background-color: #ffffff;
+  color: #50162f;
+  font-size: 12px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle hamburguesa para móviles */
+.floating-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 241, 217, 0.2);
+  color: #ffffff;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.floating-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.menu-bar {
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-cream);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.floating-menu-toggle.is-open .menu-bar:nth-child(1) {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.floating-menu-toggle.is-open .menu-bar:nth-child(2) {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* Drawer móvil */
+.floating-drawer {
+  display: none;
+  background: rgba(56, 12, 32, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(247, 85, 145, 0.2);
+  padding: 16px 5% 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.floating-drawer.is-open {
+  display: block;
+  animation: slideDownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.drawer-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  color: var(--color-cream);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(247, 85, 145, 0.12);
+  transition: all 0.2s ease;
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+  background: rgba(247, 85, 145, 0.22);
+  border-color: rgba(247, 85, 145, 0.4);
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.drawer-icon {
+  font-size: 18px;
+}
+
+/* ==========================================================================
+   DIVISIONES RELAJANTES Y ORGÁNICAS ENTRE SECCIONES
+   ========================================================================== */
+.section-divider {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: clamp(48px, 6vw, 92px);
+}
+
+.divider-hero-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+/* Divisor Zen Botánico entre Productos y Catálogos */
+.relax-zen-divider-wrapper {
+  width: 100%;
+  background-color: #fff7f2;
+}
+
+.relax-zen-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 44px 5% 40px;
+  background-color: #fff7f2;
+  box-sizing: border-box;
+}
+
+.relax-zen-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(247, 85, 145, 0.28) 40%, rgba(207, 56, 112, 0.6));
+  border-radius: 9999px;
+}
+
+.relax-zen-line.right {
+  background: linear-gradient(90deg, rgba(207, 56, 112, 0.6), rgba(247, 85, 145, 0.28) 60%, transparent);
+}
+
+.relax-zen-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  background: #ffffff;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(247, 85, 145, 0.28);
+  box-shadow: 0 6px 20px rgba(80, 22, 47, 0.05), 0 0 16px rgba(247, 85, 145, 0.12);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.relax-zen-icon {
+  width: 18px;
+  height: 18px;
+  color: #cf3870;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   BOTÓN VOLVER ARRIBA ELEGANTE
+   ========================================================================== */
+.btn-back-to-top {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 2500;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #61183b 0%, #46102a 100%);
+  color: #ffffff;
+  border: 1.5px solid rgba(247, 85, 145, 0.4);
+  box-shadow: 0 10px 28px rgba(70, 16, 42, 0.35);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(18px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.btn-back-to-top:hover {
+  background: #f75591;
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 14px 32px rgba(247, 85, 145, 0.45);
+}
+
+.btn-back-to-top:active {
+  transform: translateY(-1px) scale(1);
+}
+
+/* Transiciones relajantes de aparición al hacer scroll (Resiliente y accesible) */
+.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+.js-animate .reveal-on-scroll:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
    MEDIA QUERIES GLOBALES
    ========================================================================== */
 @media (max-width: 1100px) {
@@ -2096,8 +2479,39 @@ h1 em {
     gap: 24px;
   }
   .contact-wrapper {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .contact-info {
+    padding-right: 0;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .contact-info .section-eyebrow,
+  .contact-info .section-title,
+  .contact-info .contact-text {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-channels {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .contact-card {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
   .footer-top {
     grid-template-columns: 1fr 1fr;
@@ -2105,11 +2519,43 @@ h1 em {
 }
 
 @media (max-width: 700px) {
+  .floating-links {
+    display: none;
+  }
+  .floating-menu-toggle {
+    display: flex;
+  }
+  .floating-nav-inner {
+    min-height: 56px;
+    padding: 8px 5%;
+  }
+  .floating-logo-img {
+    height: 34px;
+    max-width: 110px;
+  }
+  .floating-cart-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+  .floating-cart-btn .cart-label {
+    display: none;
+  }
+  .relax-zen-divider {
+    gap: 14px;
+    padding: 30px 5%;
+  }
+  .relax-zen-badge {
+    padding: 8px 16px;
+    font-size: 11.5px;
+    gap: 8px;
+  }
   .section-products,
   .section-catalogos,
-  .section-novedades,
-  .section-contact {
+  .section-novedades {
     padding: 70px 0 80px;
+  }
+  .section-contact {
+    padding: 60px 0 75px;
   }
   .products-grid {
     grid-template-columns: 1fr;
@@ -2137,8 +2583,34 @@ h1 em {
     font-size: 22px;
   }
   .contact-card {
-    padding: 28px 22px;
-    border-radius: 20px;
+    padding: 32px 22px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px; /* Evita zoom molesto en Safari iOS */
+  }
+  .btn-submit {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    height: 56px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .form-feedback {
+    text-align: center;
+  }
+  .btn-back-to-top {
+    bottom: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
   }
   .footer-top {
     grid-template-columns: 1fr;
@@ -2155,6 +2627,27 @@ h1 em {
     bottom: 20px;
     justify-content: center;
     text-align: center;
+  }
+}
+
+@media (max-width: 440px) {
+  .contact-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  .channel-item {
+    padding: 14px 16px;
+    gap: 14px;
+  }
+  .channel-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 19px;
+  }
+  .relax-zen-badge {
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
   }
 }
 

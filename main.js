@@ -36,6 +36,7 @@ function initApp() {
   // 3. Carrito y Notificación Toast Flotante
   let cartCount = 0;
   const cartBadge = document.getElementById('cartBadge');
+  const floatingCartBadge = document.getElementById('floatingCartBadge');
   const toast = document.getElementById('toast');
   let toastTimer = null;
 
@@ -52,13 +53,15 @@ function initApp() {
 
   function updateCartBadge(additionalCount = 1) {
     cartCount += additionalCount;
-    if (cartBadge) {
-      cartBadge.textContent = cartCount;
-      cartBadge.style.transform = 'scale(1.35)';
-      setTimeout(() => {
-        cartBadge.style.transform = 'scale(1)';
-      }, 220);
-    }
+    [cartBadge, floatingCartBadge].forEach(badge => {
+      if (badge) {
+        badge.textContent = cartCount;
+        badge.style.transform = 'scale(1.35)';
+        setTimeout(() => {
+          badge.style.transform = 'scale(1)';
+        }, 220);
+      }
+    });
   }
 
   // Botón directo "Añadir a la bolsa" en las tarjetas
@@ -464,6 +467,158 @@ function initApp() {
 
       contactForm.reset();
       showToast('💌 Mensaje enviado con éxito a Majokacin.');
+    });
+  }
+
+  // 7. Navegación Flotante Elegante, ScrollSpy y Volver Arriba
+  const floatingNav = document.getElementById('floatingNav');
+  const floatingMenuToggle = document.getElementById('floatingMenuToggle');
+  const floatingDrawer = document.getElementById('floatingDrawer');
+  const btnBackToTop = document.getElementById('btnBackToTop');
+
+  // Toggle menú móvil desplegable
+  if (floatingMenuToggle && floatingDrawer) {
+    floatingMenuToggle.addEventListener('click', () => {
+      const isOpen = floatingDrawer.classList.toggle('is-open');
+      floatingMenuToggle.classList.toggle('is-open', isOpen);
+      floatingMenuToggle.setAttribute('aria-expanded', String(isOpen));
+      floatingDrawer.setAttribute('aria-hidden', String(!isOpen));
+    });
+  }
+
+  // Cerrar menú al hacer clic en cualquier enlace del drawer
+  const drawerLinks = document.querySelectorAll('.drawer-link');
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (floatingDrawer && floatingMenuToggle) {
+        floatingDrawer.classList.remove('is-open');
+        floatingMenuToggle.classList.remove('is-open');
+        floatingMenuToggle.setAttribute('aria-expanded', 'false');
+        floatingDrawer.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
+
+  // ScrollSpy: Detección elegante de sección activa
+  const trackedSections = [
+    { id: 'hero', element: document.getElementById('hero') },
+    { id: 'productos', element: document.getElementById('productos') },
+    { id: 'catalogos', element: document.getElementById('catalogos') },
+    { id: 'novedades', element: document.getElementById('novedades') },
+    { id: 'contacto', element: document.getElementById('contacto') }
+  ].filter(item => item.element !== null);
+
+  const floatingLinks = document.querySelectorAll('.floating-link');
+
+  function updateActiveNav(activeId) {
+    floatingLinks.forEach(link => {
+      const target = link.getAttribute('data-target') || link.getAttribute('href')?.replace('#', '');
+      if (target === activeId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    drawerLinks.forEach(link => {
+      const target = link.getAttribute('href')?.replace('#', '');
+      if (target === activeId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // Control suave al hacer scroll
+  let isTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!isTicking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        // Mostrar / ocultar barra flotante
+        if (floatingNav) {
+          if (scrollY > 140) {
+            floatingNav.classList.add('is-visible');
+          } else {
+            floatingNav.classList.remove('is-visible');
+            if (floatingDrawer && floatingMenuToggle) {
+              floatingDrawer.classList.remove('is-open');
+              floatingMenuToggle.classList.remove('is-open');
+              floatingMenuToggle.setAttribute('aria-expanded', 'false');
+              floatingDrawer.setAttribute('aria-hidden', 'true');
+            }
+          }
+        }
+
+        // Mostrar / ocultar botón "Volver arriba"
+        if (btnBackToTop) {
+          if (scrollY > 380) {
+            btnBackToTop.classList.add('is-visible');
+          } else {
+            btnBackToTop.classList.remove('is-visible');
+          }
+        }
+
+        // Detectar sección visible para ScrollSpy
+        const scrollPosition = scrollY + 160;
+        let currentSectionId = '';
+        for (let i = trackedSections.length - 1; i >= 0; i--) {
+          const item = trackedSections[i];
+          if (item.element.offsetTop <= scrollPosition) {
+            currentSectionId = item.id;
+            break;
+          }
+        }
+        if (currentSectionId) {
+          updateActiveNav(currentSectionId);
+        }
+
+        isTicking = false;
+      });
+      isTicking = true;
+    }
+  }, { passive: true });
+
+  // Botón Volver arriba con transición suave
+  if (btnBackToTop) {
+    btnBackToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // 8. Transiciones de Entrada Relajantes (Scroll Reveal)
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealElements = document.querySelectorAll(
+    '.section-header, .novedades-intro, .product-card, .catalogo-card, .video-card, .contact-card, .contact-info, .relax-zen-divider'
+  );
+
+  if (!isReducedMotion && 'IntersectionObserver' in window) {
+    document.body.classList.add('js-animate');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    revealElements.forEach((el, index) => {
+      el.classList.add('reveal-on-scroll');
+      if (el.classList.contains('product-card') || el.classList.contains('catalogo-card') || el.classList.contains('video-card')) {
+        el.style.transitionDelay = `${(index % 4) * 0.08}s`;
+      }
+      revealObserver.observe(el);
     });
   }
 }
