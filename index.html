@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Majokacin — Para ti, tu hogar y mucho más.</title>
+    <meta name="description" content="Majokacin: Cosmética consciente, cuidado femenino y belleza botánica para ti y tu hogar." />
+
+    <!-- Google Fonts Preconnect & Load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- SECCIÓN HERO CINEMATOGRÁFICA MAJOKACIN -->
+    <section class="hero mimo" id="hero">
+      <header class="section-nav">
+        <a href="#hero" class="brand brand-logo-wrap" aria-label="Majokacin Inicio">
+          <img src="/src/image/logo-blanco-transparente.png" alt="Majokacin" class="brand-logo-img" />
+        </a>
+        <nav class="section-links" aria-label="Navegación principal">
+          <a href="#productos">Tendencias</a>
+          <a href="#catalogos">Catálogos</a>
+          <a href="#novedades">Novedades</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <a href="#productos" class="header-action" id="headerCartBtn" aria-label="Ver bolsa de compras">
+          <span>Bolsa</span>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+      </header>
+
+      <div class="hero-body">
+        <div class="hero-content">
+          <h1>Para ti, tu hogar <em>y mucho más.</em></h1>
+          <p class="bodycopy">Dale espacio a tu lado curioso. Cosmética botánica, fórmulas limpias y rituales de cuidado personal pensados para consentirte a ti y a tu hogar.</p>
+          <div class="hero-actions">
+            <button id="action" type="button" aria-controls="response">Despertar a Mimo</button>
+            <p id="response" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="visual" class="visual" tabindex="0" role="region" aria-label="Personaje interactivo cerámico Mimo">
+        <div class="canvas-mount"></div>
+        <div class="fallback-art" aria-hidden="true">✦</div>
+      </div>
+
+      <span id="metrics" class="sr-only" aria-hidden="true"></span>
+    </section>
+
+    <!-- SECCIÓN PRODUCTOS EN TENDENCIA -->
+    <section class="section-products" id="productos">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Selección Exclusiva</span>
+          <h2 class="section-title">Productos en Tendencia</h2>
+          <p class="section-subtitle">
+            Haz clic en cualquier producto para explorar su galería completa de imágenes, ritual de aplicación y detalles exclusivos.
+          </p>
+
+          <!-- Filtros de categoría -->
+          <div class="category-filters" role="tablist" aria-label="Filtro de productos">
+            <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+            <button class="filter-pill" data-filter="facial" role="tab" aria-selected="false">Cuidado Facial</button>
+            <button class="filter-pill" data-filter="hogar" role="tab" aria-selected="false">Aromas &amp; Hogar</button>
+            <button class="filter-pill" data-filter="corporal" role="tab" aria-selected="false">Cuerpo &amp; Mente</button>
+          </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Producto 1 -->
+          <article class="product-card" data-category="facial" data-id="1"
+            data-name="Sérum Iluminador Rosa Salvaje"
+            data-category-label="Cuidado Facial"
+            data-price="34.00"
+            data-original-price="45.00"
+            data-rating="★ 4.9 (184 reseñas)"
+            data-badge="Más Vendido"
+            data-images="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1608248597359-54378f8d9fa3?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80"
+            data-desc="Elixir botánico ultraligero formulado con Vitamina C esterificada al 12%, hidrolato puro de rosas silvestres y tres pesos moleculares de ácido hialurónico. Penetra profundamente para unificar el tono cutáneo, difuminar manchas y aportar una luminosidad radiante y duradera sin obstruir los poros."
+            data-usage="Aplica de 3 a 4 gotas sobre la piel limpia de rostro, cuello y escote por la mañana y noche. Masajea suavemente con movimientos circulares ascendentes antes de tu crema hidratante."
+            data-skintype="Ideal para todo tipo de piel, especialmente pieles apagadas, con tono irregular o primeras líneas de expresión."
+            data-sizes="30 ml (Frasco estándar)|50 ml (Formato ahorro)">
+            <div class="product-visual">
+              <span class="product-badge">Más Vendido</span>
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80" alt="Sérum Iluminador Rosa Salvaje" class="product-img" loading="lazy" />
+              <button type="button" class="btn-quick-view" aria-label="Ver detalles de Sérum Iluminador">
+                <span>🔍 Ver Detalles</span>
+              </button>
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Cuidado Facial</span>
+                <span class="product-rating">★ 4.9 (184)</span>
+              </div>
+              <h3 class="product-name">Sérum Iluminador Rosa Salvaje</h3>
+              <p class="product-benefits">
+                <strong>Resumen de beneficios:</strong> Vitamina C activa, extracto de rosas y ácido hialurónico triple. Unifica el tono, desvanece manchas e ilumina la piel desde la primera aplicación.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">$34.00</span>
+                <button type="button" class="btn-add-cart" data-name="Sérum Iluminador Rosa Salvaje" data-price="34.00">
+                  Añadir a la bolsa
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Producto 2 -->
+          <article class="product-card" data-category="facial" data-id="2"
+            data-name="Crema Cerámica Regeneradora Noche"
+            data-category-label="Cuidado Facial"
+            data-price="42.00"
+            data-original-price="56.00"
+            data-rating="★ 5.0 (142 reseñas)"
+            data-badge="Favorito del Equipo"
+            data-images="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
+            data-desc="Tratamiento nocturno con complejo de 5 fitoceramidas, péptidos botánicos de arroz y manteca pura de karité virgen. Sella la hidratación durante las 8 horas de sueño, relajando la musculatura facial y devolviendo la turgencia y elasticidad a la piel al despertar."
+            data-usage="Toma una pequeña cantidad con la espátula cerámica y caliéntala entre las yemas de tus dedos. Aplica con suaves presiones envolventes sobre rostro y cuello como último paso de tu rutina de noche."
+            data-skintype="Piel normal a seca, madura o con barrera cutánea comprometida."
+            data-sizes="50 ml (Tarro de cristal)|100 ml (Edición estudio)">
+            <div class="product-visual">
+              <span class="product-badge">Favorito del Equipo</span>
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Crema Cerámica Regeneradora Noche" class="product-img" loading="lazy" />
+              <button type="button" class="btn-quick-view" aria-label="Ver detalles de Crema Cerámica Regeneradora">
+                <span>🔍 Ver Detalles</span>
+              </button>
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Cuidado Facial</span>
+                <span class="product-rating">★ 5.0 (142)</span>
+              </div>
+              <h3 class="product-name">Crema Cerámica Regeneradora Noche</h3>
+              <p class="product-benefits">
+                <strong>Resumen de beneficios:</strong> Fitoceramidas y péptidos botánicos. Restaura la barrera de hidratación, relaja las líneas de expresión y despierta con una piel visiblemente descansada.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">$42.00</span>
+                <button type="button" class="btn-add-cart" data-name="Crema Cerámica Regeneradora Noche" data-price="42.00">
+                  Añadir a la bolsa
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Producto 3 -->
+          <article class="product-card" data-category="hogar" data-id="3"
+            data-name="Bruma Armonizante Hogar & Almohada"
+            data-category-label="Aromas & Hogar"
+            data-price="28.00"
+            data-original-price="38.00"
+            data-rating="★ 4.8 (98 reseñas)"
+            data-badge="Esencial Hogar"
+            data-images="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80"
+            data-desc="Bruma botánica elaborada con destilado de lavanda provenzal pura, madera de sándalo y notas frescas de bergamota. Su fórmula libre de alcohol irritante no mancha los tejidos y crea una atmósfera de calma inmediata en dormitorios, almohadas y salas de descanso."
+            data-usage="Vaporiza a unos 30 cm de distancia sobre cojines, ropa de cama o en el ambiente 15 minutos antes de descansar o durante momentos de meditación y lectura."
+            data-skintype="Apto para todos los espacios del hogar y textiles delicados."
+            data-sizes="120 ml (Atomizador)|250 ml (Recarga eco)">
+            <div class="product-visual">
+              <span class="product-badge">Esencial Hogar</span>
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Bruma Botánica Armonizante Hogar &amp; Almohada" class="product-img" loading="lazy" />
+              <button type="button" class="btn-quick-view" aria-label="Ver detalles de Bruma Armonizante">
+                <span>🔍 Ver Detalles</span>
+              </button>
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Aromas &amp; Hogar</span>
+                <span class="product-rating">★ 4.8 (98)</span>
+              </div>
+              <h3 class="product-name">Bruma Armonizante Hogar &amp; Almohada</h3>
+              <p class="product-benefits">
+                <strong>Resumen de beneficios:</strong> Lavanda francesa pura, sándalo y bergamota. Despeja el estrés del día, purifica el aire de la estancia y favorece un sueño profundo y reparador.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">$28.00</span>
+                <button type="button" class="btn-add-cart" data-name="Bruma Armonizante Hogar & Almohada" data-price="28.00">
+                  Añadir a la bolsa
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Producto 4 -->
+          <article class="product-card" data-category="hogar" data-id="4"
+            data-name="Vela Botánica Soja & Cuarzo Rosa"
+            data-category-label="Aromas & Hogar"
+            data-price="36.00"
+            data-original-price="48.00"
+            data-rating="★ 4.9 (115 reseñas)"
+            data-badge="Edición Limitada"
+            data-images="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80"
+            data-desc="Vela vertida artesanalmente con cera 100% de soja vegetal no transgénica, mecha de algodón orgánico e incrustación de cuarzo rosa natural. Desprende una fragancia limpia de jazmín blanco, peonías y vainilla suave con 55 horas de combustión libre de hollín tóxico."
+            data-usage="En el primer encendido, mantén la vela encendida hasta que la superficie se funda completamente hasta los bordes. Corta la mecha a 5 mm antes de cada nuevo uso."
+            data-skintype="Ideal para ambientar salas de estar, baños de inmersión y sesiones de yoga."
+            data-sizes="280 g (55 horas)|420 g (85 horas doble mecha)">
+            <div class="product-visual">
+              <span class="product-badge">Edición Limitada</span>
+              <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=800&q=80" alt="Vela Botánica Soja &amp; Cuarzo Rosa" class="product-img" loading="lazy" />
+              <button type="button" class="btn-quick-view" aria-label="Ver detalles de Vela Botánica">
+                <span>🔍 Ver Detalles</span>
+              </button>
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Aromas &amp; Hogar</span>
+                <span class="product-rating">★ 4.9 (115)</span>
+              </div>
+              <h3 class="product-name">Vela Botánica Soja &amp; Cuarzo Rosa</h3>
+              <p class="product-benefits">
+                <strong>Resumen de beneficios:</strong> Cera 100% de soja vegetal y mecha de algodón con notas de jazmín blanco y vainilla. 55 horas de combustión limpia libre de toxinas para calmar la mente.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">$36.00</span>
+                <button type="button" class="btn-add-cart" data-name="Vela Botánica Soja & Cuarzo Rosa" data-price="36.00">
+                  Añadir a la bolsa
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Producto 5 -->
+          <article class="product-card" data-category="facial" data-id="5"
+            data-name="Bálsamo Floral Glow Multiusos"
+            data-category-label="Belleza Femenina"
+            data-price="22.00"
+            data-original-price="30.00"
+            data-rating="★ 5.0 (210 reseñas)"
+            data-badge="Tendencia Viral"
+            data-images="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80"
+            data-desc="Bálsamo nutritivo en barra formulado con escualano botánico de oliva, aceite de flor de camelia japonesa y pigmentos minerales micronizados. Se funde al contacto con la temperatura corporal para aportar un rubor fresco y saludable en labios y mejillas."
+            data-usage="Desliza suavemente sobre los pómulos y labios, y difumina con pequeños toques de la yema de los dedos. Aplica una segunda capa para intensificar el color si lo deseas."
+            data-skintype="Apto para todos los tonos y tipos de piel, incluso las más sensibles."
+            data-sizes="Tono Pétalo Rosa (Natural)|Tono Berry Glow (Intenso)">
+            <div class="product-visual">
+              <span class="product-badge">Tendencia Viral</span>
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80" alt="Bálsamo Labial &amp; Mejillas Floral Glow" class="product-img" loading="lazy" />
+              <button type="button" class="btn-quick-view" aria-label="Ver detalles de Bálsamo Floral Glow">
+                <span>🔍 Ver Detalles</span>
+              </button>
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Belleza Femenina</span>
+                <span class="product-rating">★ 5.0 (210)</span>
+              </div>
+              <h3 class="product-name">Bálsamo Floral Glow Multiusos</h3>
+              <p class="product-benefits">
+                <strong>Resumen de beneficios:</strong> Escualano botánico y aceite de camelia con pigmento modulable. Proporciona hidratación prolongada y un rubor fresco y saludable en labios y pómulos.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">$22.00</span>
+                <button type="button" class="btn-add-cart" data-name="Bálsamo Floral Glow Multiusos" data-price="22.00">
+                  Añadir a la bolsa
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Producto 6 -->
+          <article class="product-card" data-category="corporal" data-id="6"
+            data-name="Aceite Corporal Oro Botánico"
+            data-category-label="Cuerpo & Mente"
+            data-price="38.00"
+            data-original-price="50.00"
+            data-rating="★ 4.9 (167 reseñas)"
+            data-badge="Recomendado"
+            data-images="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80|https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=80"
+            data-desc="Mezcla botánica prensada en frío de aceite de jojoba dorada virgen, rosa mosqueta patagónica y vitamina E pura. Su textura de tacto seco se absorbe de inmediato sin residuo graso, devolviendo la firmeza, suavidad y luminosidad natural a todo tu cuerpo."
+            data-usage="Aplica sobre la piel ligeramente húmeda después de la ducha con masajes circulares ascendentes desde los tobillos hasta el pecho para retener la máxima hidratación."
+            data-skintype="Piel desvitalizada, seca o expuesta a cambios de clima."
+            data-sizes="100 ml (Gotero dosificador)|200 ml (Edición familiar)">
+            <div class="product-visual">
+              <span class="product-badge">Recomendado</span>
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Aceite Corporal Sedoso Oro Botánico" class="product-img" loading="lazy" />
+              <button type="button" class="btn-quick-view" aria-label="Ver detalles de Aceite Corporal Oro">
+                <span>🔍 Ver Detalles</span>
+              </button>
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Cuerpo &amp; Mente</span>
+                <span class="product-rating">★ 4.9 (167)</span>
+              </div>
+              <h3 class="product-name">Aceite Corporal Oro Botánico</h3>
+              <p class="product-benefits">
+                <strong>Resumen de beneficios:</strong> Aceites prensados en frío de jojoba, rosa mosqueta y vitamina E. Tacto seco y sedoso que devuelve la firmeza y luminosidad a tu cuerpo tras la ducha.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">$38.00</span>
+                <button type="button" class="btn-add-cart" data-name="Aceite Corporal Oro Botánico" data-price="38.00">
+                  Añadir a la bolsa
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN CATÁLOGOS DIGITALES & PDF (ÉSIKA, YANBAL, DUBU SAC, NATURA) -->
+    <section class="section-catalogos" id="catalogos">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Marcas Aliadas &amp; Distribución</span>
+          <h2 class="section-title">Catálogos Digitales &amp; PDF</h2>
+          <p class="section-subtitle">
+            Accede y descarga directamente las últimas campañas, colecciones y catálogos mayoristas de nuestras marcas aliadas más reconocidas.
+          </p>
+        </div>
+
+        <div class="catalogos-grid">
+          <!-- Catálogo 1: Ésika -->
+          <article class="catalogo-card">
+            <div class="catalogo-header">
+              <div class="brand-logo-badge brand-esika">
+                <span class="brand-logo-text">ésika</span>
+              </div>
+              <span class="catalogo-campaign-badge">Campaña Actual 2026</span>
+            </div>
+            <div class="catalogo-preview-wrap">
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=80" alt="Portada de Catálogo Ésika" class="catalogo-cover-img" loading="lazy" />
+              <div class="catalogo-overlay">
+                <span class="catalogo-chip">Catálogo Digital Interactivo</span>
+              </div>
+            </div>
+            <div class="catalogo-info">
+              <h3 class="catalogo-card-title">Catálogo Oficial Ésika</h3>
+              <p class="catalogo-card-desc">
+                Maquillaje de alta duración, perfumería fina femenina y masculina, y tratamiento facial de vanguardia con ofertas de campaña vigente.
+              </p>
+              <div class="catalogo-actions">
+                <a href="https://esika.tiendabelcorp.com/" target="_blank" rel="noopener noreferrer" class="btn-catalogo-primary">
+                  <span>Ver Catálogo Digital</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <a href="https://esika.tiendabelcorp.com/" target="_blank" rel="noopener noreferrer" class="btn-catalogo-secondary">
+                  <span>Descargar PDF</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Catálogo 2: Yanbal -->
+          <article class="catalogo-card">
+            <div class="catalogo-header">
+              <div class="brand-logo-badge brand-yanbal">
+                <span class="brand-logo-text">YANBAL</span>
+              </div>
+              <span class="catalogo-campaign-badge">Edición Belleza &amp; Joyas</span>
+            </div>
+            <div class="catalogo-preview-wrap">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Portada de Catálogo Yanbal" class="catalogo-cover-img" loading="lazy" />
+              <div class="catalogo-overlay">
+                <span class="catalogo-chip">Catálogo Digital Interactivo</span>
+              </div>
+            </div>
+            <div class="catalogo-info">
+              <h3 class="catalogo-card-title">Catálogo Yanbal Internacional</h3>
+              <p class="catalogo-card-desc">
+                Cuidado del rostro con activos botánicos andinos, fragancias de autor y joyería exclusiva con baño en oro y metales preciosos.
+              </p>
+              <div class="catalogo-actions">
+                <a href="https://www.yanbal.com/" target="_blank" rel="noopener noreferrer" class="btn-catalogo-primary">
+                  <span>Ver Catálogo Digital</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <a href="https://www.yanbal.com/" target="_blank" rel="noopener noreferrer" class="btn-catalogo-secondary">
+                  <span>Descargar PDF</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Catálogo 3: Dubu SAC -->
+          <article class="catalogo-card">
+            <div class="catalogo-header">
+              <div class="brand-logo-badge brand-dubu">
+                <span class="brand-logo-text">DUBU SAC</span>
+              </div>
+              <span class="catalogo-campaign-badge">Línea Mayorista 2026</span>
+            </div>
+            <div class="catalogo-preview-wrap">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80" alt="Portada de Catálogo Dubu SAC" class="catalogo-cover-img" loading="lazy" />
+              <div class="catalogo-overlay">
+                <span class="catalogo-chip">Catálogo PDF Mayorista</span>
+              </div>
+            </div>
+            <div class="catalogo-info">
+              <h3 class="catalogo-card-title">Catálogo Dubu SAC Cosmética</h3>
+              <p class="catalogo-card-desc">
+                Distribución autorizada de insumos cosméticos, cuidado capilar profesional y líneas corporales para centros de belleza y mayoristas.
+              </p>
+              <div class="catalogo-actions">
+                <a href="#contacto" class="btn-catalogo-primary">
+                  <span>Descargar Catálogo PDF</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </a>
+                <a href="#contacto" class="btn-catalogo-secondary">
+                  <span>Lista de Precios</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Catálogo 4: Natura -->
+          <article class="catalogo-card">
+            <div class="catalogo-header">
+              <div class="brand-logo-badge brand-natura">
+                <span class="brand-logo-text">natura</span>
+              </div>
+              <span class="catalogo-campaign-badge">Belleza Sustentable</span>
+            </div>
+            <div class="catalogo-preview-wrap">
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80" alt="Portada de Catálogo Natura" class="catalogo-cover-img" loading="lazy" />
+              <div class="catalogo-overlay">
+                <span class="catalogo-chip">Revista Digital Natura</span>
+              </div>
+            </div>
+            <div class="catalogo-info">
+              <h3 class="catalogo-card-title">Revista Digital Natura</h3>
+              <p class="catalogo-card-desc">
+                Cuidado corporal vegano con bioactivos de la Amazonía, perfumería con alcohol orgánico y productos con repuesto sustentable.
+              </p>
+              <div class="catalogo-actions">
+                <a href="https://www.natura.com/" target="_blank" rel="noopener noreferrer" class="btn-catalogo-primary">
+                  <span>Ver Catálogo Digital</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <a href="https://www.natura.com/" target="_blank" rel="noopener noreferrer" class="btn-catalogo-secondary">
+                  <span>Descargar PDF</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN NOVEDADES: VIDEOS, TENDENCIAS Y CONSEJOS / TIPS -->
+    <section class="section-novedades" id="novedades">
+      <div class="container">
+        <div class="novedades-intro text-center">
+          <span class="section-eyebrow">Videos, Tendencias &amp; Tips</span>
+          <h2 class="section-title">Novedades para tu Rutina</h2>
+          <p class="section-subtitle">
+            Aprende técnicas profesionales de aplicación, descubre rituales botánicos y transforma la energía de tu hogar con nuestros consejos y videos exclusivos.
+          </p>
+        </div>
+
+        <div class="video-grid">
+          <!-- Video Card 1 -->
+          <article class="video-card" data-video-id="1" data-title="Masaje Facial Lifting con Sérum Botánico" data-tag="Tip de Skincare" data-duration="2:45 min" data-desc="Aprende la técnica de drenaje linfático manual y activación de colágeno para despertar la firmeza de tu rostro cada mañana en solo 3 minutos." data-tips="1. Limpia tu piel con agua tibia.|2. Aplica 4-5 gotas del Sérum Iluminador.|3. Realiza movimientos ascendentes desde el mentón hacia las sienes.|4. Presiona suavemente el área de la clavícula para drenar.">
+            <div class="video-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80" alt="Video tutorial de masaje facial con sérum" class="video-thumb" loading="lazy" />
+              <div class="video-overlay">
+                <button type="button" class="btn-play-trigger" aria-label="Reproducir video: Masaje Facial Lifting">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <span class="video-duration">2:45 min</span>
+              </div>
+              <span class="video-category-tag">Tip de Skincare</span>
+            </div>
+            <div class="video-info">
+              <h3 class="video-card-title">Masaje Facial Lifting con Sérum Botánico</h3>
+              <p class="video-card-desc">
+                Técnica de drenaje linfático manual para activar la circulación, reducir hinchazón matutina y esculpir pómulos con activos botánicos.
+              </p>
+              <button type="button" class="btn-view-video" data-video-id="1">
+                <span>▶ Ver Video &amp; Consejos</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Video Card 2 -->
+          <article class="video-card" data-video-id="2" data-title="Ritual Nocturno: Aromaterapia para Dormir Mejor" data-tag="Aromas & Hogar" data-duration="3:20 min" data-desc="Descubre cómo ambientar tu habitación con brumas botánicas y velas de soja vegetal para desconectar de la pantalla y descansar profundamente." data-tips="1. Apaga luces intensas 30 minutos antes de acostarte.|2. Enciende la Vela de Soja & Cuarzo Rosa.|3. Bruma tus almohadas y sábanas con lavanda y sándalo.|4. Realiza 4 respiraciones diafragmáticas lentas.">
+            <div class="video-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=900&q=80" alt="Video de aromaterapia y velas para el hogar" class="video-thumb" loading="lazy" />
+              <div class="video-overlay">
+                <button type="button" class="btn-play-trigger" aria-label="Reproducir video: Ritual Nocturno">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <span class="video-duration">3:20 min</span>
+              </div>
+              <span class="video-category-tag">Aromas &amp; Hogar</span>
+            </div>
+            <div class="video-info">
+              <h3 class="video-card-title">Ritual Nocturno: Aromaterapia para Dormir</h3>
+              <p class="video-card-desc">
+                Cómo combinar esencias de lavanda y velas puras de soja para transformar tu dormitorio en un santuario libre de estrés diario.
+              </p>
+              <button type="button" class="btn-view-video" data-video-id="2">
+                <span>▶ Ver Video &amp; Consejos</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Video Card 3 -->
+          <article class="video-card" data-video-id="3" data-title="Efecto Clean Girl Glow con Bálsamo Multiusos" data-tag="Tendencia Viral" data-duration="1:55 min" data-desc="El look viral de maquillaje invisible: piel con brillo natural y aspecto saludable sin base pesada, usando únicamente bálsamos modulables." data-tips="1. Aplica crema hidratante en todo el rostro.|2. Da ligeros toquecitos del Bálsamo Floral Glow en la parte alta de los pómulos.|3. Difumina con la yema de los dedos hacia las sienes.|4. Añade un toque en el puente de la nariz y labios.">
+            <div class="video-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80" alt="Video de tendencia de maquillaje Clean Girl Glow" class="video-thumb" loading="lazy" />
+              <div class="video-overlay">
+                <button type="button" class="btn-play-trigger" aria-label="Reproducir video: Clean Girl Glow">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <span class="video-duration">1:55 min</span>
+              </div>
+              <span class="video-category-tag">Tendencia Viral</span>
+            </div>
+            <div class="video-info">
+              <h3 class="video-card-title">Efecto Clean Girl Glow con Bálsamo</h3>
+              <p class="video-card-desc">
+                Puntos estratégicos de luz natural para lograr una tez jugosa y fresca durante todo el día con ingredientes hidratantes limpios.
+              </p>
+              <button type="button" class="btn-view-video" data-video-id="3">
+                <span>▶ Ver Video &amp; Consejos</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Video Card 4 -->
+          <article class="video-card" data-video-id="4" data-title="La Regla de los 60 Segundos al Limpiar tu Piel" data-tag="Consejo Experto" data-duration="2:10 min" data-desc="El secreto dermatológico más sencillo y transformador: limpiar con suavidad durante 60 segundos completos para activar los botánicos limpiadores." data-tips="1. Humedece tu rostro con agua templada.|2. Masajea el limpiador suavemente con movimientos circulares durante 60 segundos.|3. Presta atención a las aletas de la nariz y la barbilla.|4. Enjuaga con agua fresca y seca a toquecitos con toalla limpia.">
+            <div class="video-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80" alt="Video de técnica de limpieza facial profunda" class="video-thumb" loading="lazy" />
+              <div class="video-overlay">
+                <button type="button" class="btn-play-trigger" aria-label="Reproducir video: Regla de los 60 segundos">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </button>
+                <span class="video-duration">2:10 min</span>
+              </div>
+              <span class="video-category-tag">Consejo Experto</span>
+            </div>
+            <div class="video-info">
+              <h3 class="video-card-title">La Regla de los 60 Segundos de Limpieza</h3>
+              <p class="video-card-desc">
+                El método recomendado para permitir que los fitoactivos limpien los poros a profundidad sin alterar el manto lipídico protector.
+              </p>
+              <button type="button" class="btn-view-video" data-video-id="4">
+                <span>▶ Ver Video &amp; Consejos</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL DE DETALLE DE PRODUCTO (GALERÍA, DESCRIPCIÓN & AÑADIR A LA BOLSA) -->
+    <div id="productModal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalProductName" hidden>
+      <div class="product-modal-backdrop" id="productModalBackdrop"></div>
+      <div class="product-modal-card">
+        <button type="button" class="btn-close-modal" id="btnCloseProductModal" aria-label="Cerrar ventana de producto">✕</button>
+
+        <div class="product-modal-grid">
+          <!-- Columna Izquierda: Galería de Imágenes -->
+          <div class="product-modal-gallery">
+            <div class="modal-main-image-wrap">
+              <span class="modal-product-badge" id="modalProductBadge">Más Vendido</span>
+              <img src="" alt="Imagen ampliada del producto" id="modalMainImg" class="modal-main-img" />
+            </div>
+            <div class="modal-thumbs-row" id="modalThumbsRow" role="tablist" aria-label="Vistas del producto">
+              <!-- Miniaturas dinámicas -->
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Información y Compra -->
+          <div class="product-modal-details">
+            <div class="modal-meta-top">
+              <span class="product-category" id="modalProductCategory">Cuidado Facial</span>
+              <span class="product-rating" id="modalProductRating">★ 4.9 (184 reseñas)</span>
+            </div>
+
+            <h2 class="modal-product-name" id="modalProductName">Nombre del Producto</h2>
+
+            <div class="modal-price-row">
+              <span class="modal-current-price" id="modalProductPrice">$34.00</span>
+              <span class="modal-original-price" id="modalProductOriginalPrice">$45.00</span>
+              <span class="modal-discount-pill" id="modalProductDiscount">-24%</span>
+            </div>
+
+            <p class="modal-product-description" id="modalProductDesc">
+              Descripción completa del producto con ingredientes botánicos y beneficios.
+            </p>
+
+            <div class="modal-accordion">
+              <div class="accordion-item">
+                <h4 class="accordion-title">✨ Ritual de Aplicación</h4>
+                <p class="accordion-body" id="modalProductUsage">Instrucciones de uso diario.</p>
+              </div>
+              <div class="accordion-item">
+                <h4 class="accordion-title">🌸 Tipo de Piel</h4>
+                <p class="accordion-body" id="modalProductSkinType">Recomendación según tu piel.</p>
+              </div>
+            </div>
+
+            <!-- Selector de Presentación/Variante -->
+            <div class="modal-option-group" id="modalSizeGroup">
+              <label class="modal-option-label">Presentación:</label>
+              <div class="modal-pills-row" id="modalSizePills">
+                <!-- Píldoras de tamaño dinámicas -->
+              </div>
+            </div>
+
+            <!-- Cantidad y Añadir a la Bolsa -->
+            <div class="modal-purchase-bar">
+              <div class="quantity-stepper" aria-label="Selector de cantidad">
+                <button type="button" class="btn-qty" id="btnQtyMinus" aria-label="Restar una unidad">−</button>
+                <span class="qty-display" id="modalQtyDisplay">1</span>
+                <button type="button" class="btn-qty" id="btnQtyPlus" aria-label="Sumar una unidad">+</button>
+              </div>
+
+              <button type="button" class="btn-modal-add-bag" id="btnModalAddBag">
+                <span>Añadir a la Bolsa</span>
+                <span id="modalAddPrice">$34.00</span>
+              </button>
+            </div>
+
+            <div class="modal-trust-badges">
+              <span>🌿 100% Botánico</span>
+              <span>🐰 Cruelty-Free</span>
+              <span>🔒 Pago &amp; Envío Seguro</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DE REPRODUCTOR DE VIDEO Y CONSEJOS -->
+    <div id="videoModal" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="modalVideoTitle" hidden>
+      <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+      <div class="video-modal-card">
+        <button type="button" class="btn-close-modal" id="btnCloseModal" aria-label="Cerrar reproductor">✕</button>
+
+        <div class="modal-video-stage">
+          <div class="simulated-player" id="simulatedPlayer">
+            <img src="" alt="Portada del video" id="modalVideoPoster" class="modal-poster" />
+            <div class="player-glow"></div>
+            <div class="player-controls-overlay">
+              <button type="button" class="player-play-btn" id="playerPlayBtn" aria-label="Pausar o reproducir">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" id="playIcon">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </button>
+              <div class="player-timeline">
+                <div class="timeline-bar">
+                  <div class="timeline-progress" id="timelineProgress"></div>
+                </div>
+                <div class="timeline-time">
+                  <span id="currentTime">0:00</span> / <span id="totalTime">2:45</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-video-body">
+          <div class="modal-header-meta">
+            <span class="video-category-tag" id="modalVideoCategory">Tip de Skincare</span>
+            <span class="modal-video-duration" id="modalVideoDuration">2:45 min</span>
+          </div>
+          <h3 class="modal-video-title" id="modalVideoTitle">Título del Video</h3>
+          <p class="modal-video-desc" id="modalVideoDesc">Descripción detallada del video.</p>
+
+          <div class="modal-tips-box">
+            <h4 class="tips-box-title">🌸 Pasos y Consejos Clave:</h4>
+            <ol class="tips-list" id="modalTipsList">
+              <!-- Cargado dinámicamente -->
+            </ol>
+          </div>
+
+          <div class="modal-footer-cta">
+            <a href="#productos" class="btn-cta-modal" id="btnModalCta">
+              Ver Productos Recomendados en este Video
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN FORMULARIO DE CONTACTO -->
+    <section class="section-contact" id="contacto">
+      <div class="container">
+        <div class="contact-wrapper">
+          <!-- Columna Izquierda: Información de contacto -->
+          <div class="contact-info">
+            <span class="section-eyebrow">Estamos Aquí para Ti</span>
+            <h2 class="section-title">Hablemos de tu ritual de belleza</h2>
+            <p class="contact-text">
+              ¿Tienes dudas sobre qué producto va mejor con tu tipo de piel o qué aroma armoniza mejor tu espacio? Escríbenos y nuestras especialistas en cosmética consciente te responderán con cariño.
+            </p>
+
+            <div class="contact-channels">
+              <div class="channel-item">
+                <div class="channel-icon" aria-hidden="true">💬</div>
+                <div>
+                  <h4 class="channel-title">WhatsApp Directo</h4>
+                  <p class="channel-detail">+34 600 123 456 (Lunes a Viernes 9:00 - 19:00)</p>
+                </div>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-icon" aria-hidden="true">✉️</div>
+                <div>
+                  <h4 class="channel-title">Correo Electrónico</h4>
+                  <p class="channel-detail">hola@majokacin.com</p>
+                </div>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-icon" aria-hidden="true">📍</div>
+                <div>
+                  <h4 class="channel-title">Atelier Majokacin</h4>
+                  <p class="channel-detail">Estudio de Cosmética y Bienestar Consciente</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Formulario -->
+          <div class="contact-card">
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contactName" class="form-label">Tu Nombre Completo *</label>
+                <input type="text" id="contactName" name="name" class="form-input" placeholder="Ej. Camila Morales" required />
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Correo Electrónico *</label>
+                <input type="email" id="contactEmail" name="email" class="form-input" placeholder="ejemplo@correo.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject" class="form-label">¿En qué podemos ayudarte?</label>
+                <select id="contactSubject" name="subject" class="form-select">
+                  <option value="asesoria">Asesoría personalizada de piel</option>
+                  <option value="pedidos">Consulta sobre pedidos y envíos</option>
+                  <option value="hogar">Recomendación de aromas para el hogar</option>
+                  <option value="catalogos">Consultas sobre Catálogos y Mayoristas</option>
+                  <option value="colaboracion">Colaboraciones o prensa</option>
+                  <option value="otro">Otras consultas</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" class="form-label">Tu Mensaje *</label>
+                <textarea id="contactMessage" name="message" class="form-textarea" rows="4" placeholder="Cuéntanos tus necesidades de cuidado o tu consulta..." required></textarea>
+              </div>
+
+              <div class="form-consent">
+                <input type="checkbox" id="contactConsent" name="consent" class="form-checkbox" required />
+                <label for="contactConsent" class="consent-label">
+                  Acepto recibir respuesta y consejos personalizados de cuidado y bienestar.
+                </label>
+              </div>
+
+              <button type="submit" id="btnSubmitContact" class="btn-submit">
+                <span>Enviar Mensaje</span>
+              </button>
+
+              <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <!-- Identidad de marca -->
+          <div class="footer-brand-col">
+            <a href="#hero" class="footer-brand footer-brand-logo-wrap" aria-label="Majokacin Inicio">
+              <img src="/src/image/logo-blanco-transparente.png" alt="Majokacin" class="footer-logo-img" />
+            </a>
+            <p class="footer-tagline">
+              Para ti, tu hogar y mucho más. Cosmética botánica y rituales de bienestar creados con delicadeza.
+            </p>
+            <!-- Redes sociales: TikTok, Facebook, Instagram -->
+            <div class="social-links" aria-label="Redes sociales de Majokacin">
+              <!-- TikTok -->
+              <a href="https://www.tiktok.com/@majokacin" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Síguenos en TikTok">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298 0 .592.046.87.135V9.4a6.33 6.33 0 0 0-.87-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.16 8.16 0 0 0 4.67 1.48V6.78c-.3-.02-.6-.05-.9-.09z"/>
+                </svg>
+                <span>TikTok</span>
+              </a>
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/majokacin" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Síguenos en Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Instagram</span>
+              </a>
+
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/majokacin" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Síguenos en Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                </svg>
+                <span>Facebook</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Columnas de enlaces -->
+          <div class="footer-links-col">
+            <h4 class="footer-col-title">Colecciones</h4>
+            <ul class="footer-nav">
+              <li><a href="#productos">Cuidado Facial</a></li>
+              <li><a href="#productos">Aromas &amp; Hogar</a></li>
+              <li><a href="#productos">Cuerpo &amp; Mente</a></li>
+              <li><a href="#novedades">Novedades en Video</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links-col">
+            <h4 class="footer-col-title">Catálogos</h4>
+            <ul class="footer-nav">
+              <li><a href="#catalogos">Catálogo Ésika</a></li>
+              <li><a href="#catalogos">Catálogo Yanbal</a></li>
+              <li><a href="#catalogos">Catálogo Dubu SAC</a></li>
+              <li><a href="#catalogos">Catálogo Natura</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links-col">
+            <h4 class="footer-col-title">Atención</h4>
+            <ul class="footer-nav">
+              <li><a href="#contacto">Asesoría de Piel</a></li>
+              <li><a href="#contacto">Preguntas Frecuentes</a></li>
+              <li><a href="#contacto">Envíos y Seguimiento</a></li>
+              <li><a href="#contacto">Garantía de Satisfacción</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            &copy; 2026 Majokacin. Todos los derechos reservados. Diseñado con amor para tu bienestar.
+          </p>
+          <div class="footer-legal">
+            <a href="#hero">Privacidad</a>
+            <a href="#hero">Términos</a>
+            <a href="#hero">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Notificación Toast Flotante -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
