@@ -2579,8 +2579,30 @@ body.mimo-off .hero-content {
   gap: 16px;
 }
 
+.footer-bottom-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .footer-copyright {
   margin: 0;
+}
+
+.footer-credits {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 240, 220, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-creator {
+  color: #ff9bbb;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 12px rgba(247, 85, 145, 0.25);
 }
 
 .footer-legal {
@@ -3170,6 +3192,10 @@ body.mimo-off .hero-content {
     flex-direction: column;
     text-align: center;
     gap: 12px;
+  }
+  .footer-bottom-copy {
+    align-items: center;
+    text-align: center;
   }
   .toast {
     left: 20px;
