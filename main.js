@@ -1,9 +1,25 @@
 import './style.css';
-import { mountScene } from './scenes.js';
 
-function initApp() {
-  // 1. Montar escena 3D interactiva de Mimo
-  mountScene('mimo');
+// Flag de configuración: 'true' para activar Mimo (Three.js), 'false' para máxima velocidad
+const MIMO_ENABLED = import.meta.env.VITE_MIMO_ENABLED === 'true';
+
+async function initApp() {
+  // 1. Control de Mimo 3D según flag de configuración
+  if (MIMO_ENABLED) {
+    document.body.classList.remove('mimo-off');
+    try {
+      const { mountScene } = await import('./scenes.js');
+      mountScene('mimo');
+    } catch (err) {
+      console.warn('No se pudo cargar la escena 3D:', err);
+    }
+  } else {
+    document.body.classList.add('mimo-off');
+    const hero = document.getElementById('hero');
+    if (hero) hero.classList.remove('mimo');
+    const visual = document.getElementById('visual');
+    if (visual) visual.style.display = 'none';
+  }
 
   // 2. Filtro interactivo de categorías de productos
   const filterButtons = document.querySelectorAll('.filter-pill');
@@ -33,12 +49,38 @@ function initApp() {
     });
   });
 
-  // 3. Carrito y Notificación Toast Flotante
-  let cartCount = 0;
+  // 3. Sistema Completo de Carrito y Bolsa de Compras con Persistencia
+  const CART_STORAGE_KEY = 'majokacin_cart_items_v1';
+  let cart = [];
+
+  try {
+    const saved = localStorage.getItem(CART_STORAGE_KEY);
+    if (saved) {
+      cart = JSON.parse(saved);
+    }
+  } catch (err) {
+    console.warn('No se pudo restaurar el carrito desde localStorage:', err);
+    cart = [];
+  }
+
   const cartBadge = document.getElementById('cartBadge');
   const floatingCartBadge = document.getElementById('floatingCartBadge');
+  const headerCartBtn = document.getElementById('headerCartBtn');
+  const floatingCartBtn = document.getElementById('floatingCartBtn');
   const toast = document.getElementById('toast');
   let toastTimer = null;
+
+  // Elementos del Modal de Bolsa de Compras
+  const cartModal = document.getElementById('cartModal');
+  const btnCloseCartModal = document.getElementById('btnCloseCartModal');
+  const cartModalBackdrop = document.getElementById('cartModalBackdrop');
+  const cartModalTitle = document.getElementById('cartModalTitle');
+  const cartEmptyState = document.getElementById('cartEmptyState');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const cartTotalAmount = document.getElementById('cartTotalAmount');
+  const btnEmptyShop = document.getElementById('btnEmptyShop');
+  const btnCartContinue = document.getElementById('btnCartContinue');
+  const btnCartWhatsApp = document.getElementById('btnCartWhatsApp');
 
   function showToast(message) {
     if (!toast) return;
@@ -51,11 +93,19 @@ function initApp() {
     }, 3200);
   }
 
-  function updateCartBadge(additionalCount = 1) {
-    cartCount += additionalCount;
+  function getCartTotalCount() {
+    return cart.reduce((total, item) => total + (item.qty || 0), 0);
+  }
+
+  function getCartTotalPrice() {
+    return cart.reduce((total, item) => total + (item.price * (item.qty || 1)), 0);
+  }
+
+  function updateCartBadges() {
+    const count = getCartTotalCount();
     [cartBadge, floatingCartBadge].forEach(badge => {
       if (badge) {
-        badge.textContent = cartCount;
+        badge.textContent = count;
         badge.style.transform = 'scale(1.35)';
         setTimeout(() => {
           badge.style.transform = 'scale(1)';
@@ -64,14 +114,239 @@ function initApp() {
     });
   }
 
+  function saveCart() {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (err) {
+      console.warn('Error al guardar en localStorage:', err);
+    }
+    updateCartBadges();
+  }
+
+  function addItemToCart(itemData, qty = 1) {
+    const existingIndex = cart.findIndex(i => i.name === itemData.name);
+    if (existingIndex > -1) {
+      cart[existingIndex].qty += qty;
+    } else {
+      cart.push({
+        name: itemData.name,
+        price: itemData.price,
+        image: itemData.image || '',
+        category: itemData.category || '',
+        qty: qty
+      });
+    }
+    saveCart();
+    showToast(`✨ ${qty > 1 ? qty + 'x ' : ''}«${itemData.name}» añadido a tu bolsa.`);
+    if (cartModal && !cartModal.hasAttribute('hidden')) {
+      renderCartModal();
+    }
+  }
+
+  function updateItemQuantity(index, delta) {
+    if (!cart[index]) return;
+    cart[index].qty += delta;
+    if (cart[index].qty <= 0) {
+      cart.splice(index, 1);
+    }
+    saveCart();
+    renderCartModal();
+  }
+
+  function removeItemFromCart(index) {
+    if (!cart[index]) return;
+    const removedName = cart[index].name;
+    cart.splice(index, 1);
+    saveCart();
+    renderCartModal();
+    showToast(`🗑️ «${removedName}» eliminado de tu bolsa.`);
+  }
+
+  // Renderizado dinámico del modal de bolsa
+  function renderCartModal() {
+    const totalCount = getCartTotalCount();
+    const totalPrice = getCartTotalPrice();
+
+    // Título según requerimiento: BOLSA DE COMPRAS ( # artículos)
+    if (cartModalTitle) {
+      const label = totalCount === 1 ? '1 artículo' : `${totalCount} artículos`;
+      cartModalTitle.textContent = `BOLSA DE COMPRAS (${label})`;
+    }
+
+    // Precio total según requerimiento: formato 0.00 S/.
+    if (cartTotalAmount) {
+      cartTotalAmount.textContent = `${totalPrice.toFixed(2)} S/.`;
+    }
+
+    // Estado vacío o listado
+    if (cart.length === 0) {
+      if (cartEmptyState) cartEmptyState.style.display = 'flex';
+      if (cartItemsList) cartItemsList.style.display = 'none';
+      if (btnCartWhatsApp) {
+        btnCartWhatsApp.disabled = true;
+      }
+    } else {
+      if (cartEmptyState) cartEmptyState.style.display = 'none';
+      if (cartItemsList) {
+        cartItemsList.style.display = 'flex';
+        cartItemsList.innerHTML = '';
+
+        cart.forEach((item, index) => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <img src="${item.image || 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300&q=80'}" alt="${item.name}" class="cart-item-img" loading="lazy" />
+            <div class="cart-item-details">
+              <div class="cart-item-header">
+                <h4 class="cart-item-name">${item.name}</h4>
+                <button type="button" class="btn-remove-item" data-index="${index}" aria-label="Eliminar ${item.name} de la bolsa">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="cart-item-pricing">
+                <span class="cart-item-unit-price">S/ ${item.price.toFixed(2)} c/u</span>
+              </div>
+              <div class="cart-item-footer">
+                <div class="cart-qty-stepper" aria-label="Selector de cantidad para ${item.name}">
+                  <button type="button" class="btn-cart-qty btn-cart-minus" data-index="${index}" aria-label="Restar una unidad">−</button>
+                  <span class="cart-qty-value">${item.qty}</span>
+                  <button type="button" class="btn-cart-qty btn-cart-plus" data-index="${index}" aria-label="Sumar una unidad">+</button>
+                </div>
+                <div class="cart-item-subtotal">
+                  <span class="cart-subtotal-label">Subtotal:</span>
+                  <span class="cart-subtotal-val">S/ ${(item.price * item.qty).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+          `;
+          cartItemsList.appendChild(itemEl);
+        });
+
+        // Eventos en los controles de cada artículo
+        cartItemsList.querySelectorAll('.btn-cart-minus').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index'), 10);
+            updateItemQuantity(idx, -1);
+          });
+        });
+
+        cartItemsList.querySelectorAll('.btn-cart-plus').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index'), 10);
+            updateItemQuantity(idx, 1);
+          });
+        });
+
+        cartItemsList.querySelectorAll('.btn-remove-item').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index'), 10);
+            removeItemFromCart(idx);
+          });
+        });
+      }
+
+      if (btnCartWhatsApp) {
+        btnCartWhatsApp.disabled = false;
+      }
+    }
+  }
+
+  function openCartModal() {
+    if (!cartModal) return;
+    renderCartModal();
+    cartModal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCartModal() {
+    if (!cartModal) return;
+    cartModal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+
+  function continueShopping() {
+    closeCartModal();
+    const productsSection = document.getElementById('productos');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Generación del mensaje WhatsApp con formato cálido, íntimo y altamente efectivo
+  function buildWhatsAppMessage() {
+    if (cart.length === 0) return '';
+
+    const lines = cart.map(item => {
+      const unitLabel = item.qty === 1 ? '1 unidad ' : `${item.qty} unidades`;
+      const subtotalFormatted = (item.price * item.qty).toFixed(2);
+      return `${unitLabel} x ${item.name} - S/ ${subtotalFormatted}`;
+    });
+
+    const total = getCartTotalPrice().toFixed(2);
+
+    return [
+      'Hola,',
+      'Estos son los productos del catálogo majokacin que me gustaría solicitar 🌸:',
+      '',
+      ...lines,
+      '',
+      `Monto total aproximado: S/ ${total}`,
+      '',
+      '¿Me confirmas si puedes realizar el pedido?',
+      'Muchas gracias ✨'
+    ].join('\n');
+  }
+
+  function sendCartToWhatsApp() {
+    if (cart.length === 0) {
+      showToast('🌸 Tu bolsa está vacía. Selecciona un producto para consultar.');
+      return;
+    }
+    const message = buildWhatsAppMessage();
+    const phone = '51918346202';
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  }
+
+  // Escuchadores de apertura de la bolsa de compras
+  if (headerCartBtn) {
+    headerCartBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openCartModal();
+    });
+  }
+
+  if (floatingCartBtn) {
+    floatingCartBtn.addEventListener('click', e => {
+      e.preventDefault();
+      openCartModal();
+    });
+  }
+
+  if (btnCloseCartModal) btnCloseCartModal.addEventListener('click', closeCartModal);
+  if (cartModalBackdrop) cartModalBackdrop.addEventListener('click', closeCartModal);
+  if (btnCartContinue) btnCartContinue.addEventListener('click', continueShopping);
+  if (btnEmptyShop) btnEmptyShop.addEventListener('click', continueShopping);
+  if (btnCartWhatsApp) btnCartWhatsApp.addEventListener('click', sendCartToWhatsApp);
+
+  // Inicializar badges desde datos guardados
+  updateCartBadges();
+
   // Botón directo "Añadir a la bolsa" en las tarjetas
   const addCartButtons = document.querySelectorAll('.btn-add-cart');
   addCartButtons.forEach(button => {
     button.addEventListener('click', e => {
-      e.stopPropagation(); // Evitar abrir el modal si solo se desea comprar rápido
-      const productName = button.getAttribute('data-name') || 'Producto';
-      updateCartBadge(1);
-      showToast(`✨ «${productName}» añadido a tu bolsa.`);
+      e.stopPropagation();
+      const card = button.closest('.product-card');
+      const name = button.getAttribute('data-name') || card?.getAttribute('data-name') || 'Producto';
+      const price = parseFloat(button.getAttribute('data-price') || card?.getAttribute('data-price') || '34.00');
+      const image = card?.querySelector('.product-img')?.src || '';
+      const category = card?.getAttribute('data-category-label') || '';
+
+      addItemToCart({ name, price, image, category }, 1);
     });
   });
 
@@ -104,7 +379,7 @@ function initApp() {
 
   function updateModalTotalPrice() {
     const total = (currentUnitPrice * currentQty).toFixed(2);
-    if (modalAddPrice) modalAddPrice.textContent = `$${total}`;
+    if (modalAddPrice) modalAddPrice.textContent = `S/ ${total}`;
   }
 
   function openProductModal(card) {
@@ -133,8 +408,8 @@ function initApp() {
     if (modalProductCategory) modalProductCategory.textContent = currentModalProduct.category;
     if (modalProductRating) modalProductRating.textContent = currentModalProduct.rating;
     if (modalProductBadge) modalProductBadge.textContent = currentModalProduct.badge;
-    if (modalProductPrice) modalProductPrice.textContent = `$${currentModalProduct.price.toFixed(2)}`;
-    if (modalProductOriginalPrice) modalProductOriginalPrice.textContent = `$${currentModalProduct.originalPrice.toFixed(2)}`;
+    if (modalProductPrice) modalProductPrice.textContent = `S/ ${currentModalProduct.price.toFixed(2)}`;
+    if (modalProductOriginalPrice) modalProductOriginalPrice.textContent = `S/ ${currentModalProduct.originalPrice.toFixed(2)}`;
 
     // Calcular descuento porcentual
     if (modalProductDiscount && currentModalProduct.originalPrice > currentModalProduct.price) {
@@ -241,8 +516,15 @@ function initApp() {
   if (btnModalAddBag) {
     btnModalAddBag.addEventListener('click', () => {
       if (!currentModalProduct) return;
-      updateCartBadge(currentQty);
-      showToast(`✨ ${currentQty}x «${currentModalProduct.name}» añadido a tu bolsa.`);
+      const mainImg = currentModalProduct.images && currentModalProduct.images.length > 0
+        ? currentModalProduct.images[0]
+        : '';
+      addItemToCart({
+        name: currentModalProduct.name,
+        price: currentModalProduct.price,
+        image: mainImg,
+        category: currentModalProduct.category
+      }, currentQty);
       closeProductModal();
     });
   }
@@ -406,6 +688,9 @@ function initApp() {
   // Cerrar con Escape cualquiera de los modales abiertos
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
+      if (cartModal && !cartModal.hasAttribute('hidden')) {
+        closeCartModal();
+      }
       if (productModal && !productModal.hasAttribute('hidden')) {
         closeProductModal();
       }
