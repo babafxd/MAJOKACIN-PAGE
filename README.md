@@ -2,6 +2,8 @@
 
 Sitio web oficial de **Majokacin**, orientado al cuidado de la belleza, cosmética consciente, cuidado femenino y bienestar para el hogar.
 
+El [plan de funcionalidades](./FEATURES.md) documenta los cambios de la portada y la navegación y sus criterios de aceptación.
+
 ---
 
 ## 🎨 Identidad & Paleta de Color

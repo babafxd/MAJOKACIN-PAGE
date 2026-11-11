@@ -761,27 +761,39 @@ async function initApp() {
   const floatingDrawer = document.getElementById('floatingDrawer');
   const btnBackToTop = document.getElementById('btnBackToTop');
 
-  // Toggle menú móvil desplegable
-  if (floatingMenuToggle && floatingDrawer) {
-    floatingMenuToggle.addEventListener('click', () => {
-      const isOpen = floatingDrawer.classList.toggle('is-open');
-      floatingMenuToggle.classList.toggle('is-open', isOpen);
-      floatingMenuToggle.setAttribute('aria-expanded', String(isOpen));
-      floatingDrawer.setAttribute('aria-hidden', String(!isOpen));
-    });
-  }
+  const sectionMenuToggle = document.getElementById('sectionMenuToggle');
+  const sectionLinks = document.getElementById('sectionLinks');
 
-  // Cerrar menú al hacer clic en cualquier enlace del drawer
-  const drawerLinks = document.querySelectorAll('.drawer-link');
-  drawerLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (floatingDrawer && floatingMenuToggle) {
-        floatingDrawer.classList.remove('is-open');
-        floatingMenuToggle.classList.remove('is-open');
-        floatingMenuToggle.setAttribute('aria-expanded', 'false');
-        floatingDrawer.setAttribute('aria-hidden', 'true');
+  function setupMobileMenu(toggle, menu) {
+    function setOpen(open) {
+      toggle.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'false';
+      setOpen(open);
+      if (open) menu.querySelector('a').focus();
+    });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+    toggle.closest('header').addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
       }
     });
+
+    return () => setOpen(false);
+  }
+
+  const closeFloatingMenu = setupMobileMenu(floatingMenuToggle, floatingDrawer);
+  const closeSectionMenu = setupMobileMenu(sectionMenuToggle, sectionLinks);
+  window.matchMedia('(max-width: 1024px)').addEventListener('change', () => {
+    closeFloatingMenu();
+    closeSectionMenu();
   });
 
   // ScrollSpy: Detección elegante de sección activa
@@ -793,27 +805,21 @@ async function initApp() {
     { id: 'contacto', element: document.getElementById('contacto') }
   ].filter(item => item.element !== null);
 
-  const floatingLinks = document.querySelectorAll('.floating-link');
+  const navigationLinks = document.querySelectorAll('.section-links a, .floating-link, .drawer-link');
 
   function updateActiveNav(activeId) {
-    floatingLinks.forEach(link => {
-      const target = link.getAttribute('data-target') || link.getAttribute('href')?.replace('#', '');
-      if (target === activeId) {
-        link.classList.add('active');
+    navigationLinks.forEach(link => {
+      const isActive = link.hash === `#${activeId}`;
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
       } else {
-        link.classList.remove('active');
-      }
-    });
-
-    drawerLinks.forEach(link => {
-      const target = link.getAttribute('href')?.replace('#', '');
-      if (target === activeId) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
+        link.removeAttribute('aria-current');
       }
     });
   }
+
+  updateActiveNav('hero');
 
   // Control suave al hacer scroll
   let isTicking = false;
@@ -826,14 +832,10 @@ async function initApp() {
         if (floatingNav) {
           if (scrollY > 140) {
             floatingNav.classList.add('is-visible');
+            closeSectionMenu();
           } else {
             floatingNav.classList.remove('is-visible');
-            if (floatingDrawer && floatingMenuToggle) {
-              floatingDrawer.classList.remove('is-open');
-              floatingMenuToggle.classList.remove('is-open');
-              floatingMenuToggle.setAttribute('aria-expanded', 'false');
-              floatingDrawer.setAttribute('aria-hidden', 'true');
-            }
+            closeFloatingMenu();
           }
         }
 
