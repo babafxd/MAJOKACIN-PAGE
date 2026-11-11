@@ -280,7 +280,7 @@ async function initApp() {
     if (cart.length === 0) return '';
 
     const lines = cart.map(item => {
-      const unitLabel = item.qty === 1 ? '1 unidad ' : `${item.qty} unidades`;
+      const unitLabel = item.qty === 1 ? '1 unidad' : `${item.qty} unidades`;
       const subtotalFormatted = (item.price * item.qty).toFixed(2);
       return `${unitLabel} x ${item.name} - S/ ${subtotalFormatted}`;
     });
@@ -289,14 +289,14 @@ async function initApp() {
 
     return [
       'Hola,',
-      'Estos son los productos del catálogo majokacin que me gustaría solicitar 🌸:',
+      'Estos son los productos del catálogo majokacin que me gustaría solicitar:',
       '',
       ...lines,
       '',
       `Monto total aproximado: S/ ${total}`,
       '',
       '¿Me confirmas si puedes realizar el pedido?',
-      'Muchas gracias ✨'
+      'Muchas gracias'
     ].join('\n');
   }
 
