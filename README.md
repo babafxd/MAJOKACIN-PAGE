@@ -45,9 +45,9 @@ El [plan de funcionalidades](./FEATURES.md) documenta los cambios de la portada 
      - Pasos y consejos clave numerados.
      - Botón directo para explorar los productos recomendados.
 
-5. **Formulario de Contacto (`#contacto`):**
-   - Canales directos (WhatsApp, Email oficial, Atelier).
-   - Formulario en tarjeta Vino Terciopelo con validación y confirmación en tiempo real.
+5. **Contacto Directo (`#contacto`):**
+   - Tarjetas de WhatsApp, correo electrónico y Almacén Lima SMP, adaptadas a móviles.
+   - Enlaces directos con mensajes preparados que identifican las consultas desde la página web.
 
 6. **Pie de Página (`footer`):**
    - Logotipo oficial de **Majokacin** (`logo.png`).

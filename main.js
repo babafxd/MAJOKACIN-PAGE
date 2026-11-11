@@ -708,53 +708,6 @@ async function initApp() {
     });
   }
 
-  // 6. Formulario de Contacto Interactivo
-  const contactForm = document.getElementById('contactForm');
-  const formFeedback = document.getElementById('formFeedback');
-
-  if (contactForm && formFeedback) {
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-
-      const nameInput = document.getElementById('contactName');
-      const emailInput = document.getElementById('contactEmail');
-      const messageInput = document.getElementById('contactMessage');
-      const consentInput = document.getElementById('contactConsent');
-
-      const name = nameInput ? nameInput.value.trim() : '';
-      const email = emailInput ? emailInput.value.trim() : '';
-      const message = messageInput ? messageInput.value.trim() : '';
-      const consent = consentInput ? consentInput.checked : false;
-
-      // Validación básica
-      if (!name || !email || !message) {
-        formFeedback.className = 'form-feedback error';
-        formFeedback.textContent = 'Por favor completa todos los campos requeridos.';
-        return;
-      }
-
-      if (!consent) {
-        formFeedback.className = 'form-feedback error';
-        formFeedback.textContent = 'Por favor acepta la casilla de consentimiento para continuar.';
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        formFeedback.className = 'form-feedback error';
-        formFeedback.textContent = 'Por favor ingresa un correo electrónico válido.';
-        return;
-      }
-
-      // Éxito
-      formFeedback.className = 'form-feedback success';
-      formFeedback.innerHTML = `¡Gracias, <strong>${name}</strong>! Hemos recibido tu consulta con cariño. Una especialista de <em>Majokacin</em> te responderá a <strong>${email}</strong> en menos de 24 horas.`;
-
-      contactForm.reset();
-      showToast('💌 Mensaje enviado con éxito a Majokacin.');
-    });
-  }
-
   // 7. Navegación Flotante Elegante, ScrollSpy y Volver Arriba
   const floatingNav = document.getElementById('floatingNav');
   const floatingMenuToggle = document.getElementById('floatingMenuToggle');
@@ -881,7 +834,7 @@ async function initApp() {
   // 8. Transiciones de Entrada Relajantes (Scroll Reveal)
   const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealElements = document.querySelectorAll(
-    '.section-header, .novedades-intro, .product-card, .catalogo-card, .video-card, .contact-card, .contact-info, .relax-zen-divider'
+    '.section-header, .novedades-intro, .product-card, .catalogo-card, .video-card, .channel-item, .contact-info, .relax-zen-divider'
   );
 
   if (!isReducedMotion && 'IntersectionObserver' in window) {
