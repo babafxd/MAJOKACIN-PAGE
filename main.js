@@ -306,7 +306,7 @@ async function initApp() {
       return;
     }
     const message = buildWhatsAppMessage();
-    const phone = '51918346202';
+    const phone = '51991943716';
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   }
