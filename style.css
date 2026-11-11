@@ -48,7 +48,7 @@ html, body {
 section[id],
 header[id],
 footer[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 140px;
 }
 
 .container {
@@ -127,6 +127,8 @@ footer[id] {
 .brand {
   display: inline-flex;
   align-items: center;
+  width: clamp(222px, 19vw, 264px);
+  min-width: 0;
   text-decoration: none;
   line-height: 1;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -137,19 +139,14 @@ footer[id] {
 }
 
 .brand-logo-img {
-  height: clamp(110px, 11vw, 150px);
-  max-height: 150px;
-  width: auto;
-  max-width: 360px;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
   display: block;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s ease;
-  filter: drop-shadow(0 4px 16px rgba(70, 16, 42, 0.35)) drop-shadow(0 2px 4px rgba(70, 16, 42, 0.2));
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .brand:hover .brand-logo-img {
   transform: scale(1.04);
-  filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.45));
 }
 
 .section-links {
@@ -506,16 +503,8 @@ body.mimo-off .hero-content {
     display: none;
   }
 
-  .brand-logo-img {
-    height: clamp(80px, 22vw, 115px);
-    max-height: 120px;
-    max-width: 200px;
-  }
-
-  .footer-logo-img {
-    height: clamp(90px, 24vw, 135px);
-    max-height: 140px;
-    max-width: 240px;
+  .brand {
+    width: clamp(208px, 55vw, 264px);
   }
 
   .header-action {
@@ -2554,19 +2543,15 @@ body.mimo-off .hero-content {
 }
 
 .footer-logo-img {
-  height: clamp(115px, 12vw, 150px);
-  max-height: 150px;
-  width: auto;
-  max-width: 380px;
-  object-fit: contain;
+  width: clamp(205px, 21vw, 264px);
+  max-width: 100%;
+  height: auto;
   display: block;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s ease;
-  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 14px rgba(255, 255, 255, 0.15));
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .footer-brand:hover .footer-logo-img {
   transform: scale(1.04);
-  filter: drop-shadow(0 8px 24px rgba(255, 255, 255, 0.35));
 }
 
 .footer-tagline {
@@ -2774,6 +2759,8 @@ body.mimo-off .hero-content {
 .floating-brand {
   display: inline-flex;
   align-items: center;
+  width: 190px;
+  min-width: 0;
   text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -2784,12 +2771,9 @@ body.mimo-off .hero-content {
 }
 
 .floating-logo-img {
-  height: 40px;
-  width: auto;
-  max-width: 140px;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
   display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
 }
 
 .floating-links {
@@ -2810,7 +2794,7 @@ body.mimo-off .hero-content {
   font-size: 14.5px;
   color: var(--color-cream);
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 8px clamp(8px, 1.2vw, 16px);
   border-radius: 9999px;
   transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
@@ -3180,14 +3164,14 @@ body.mimo-off .hero-content {
   }
   .floating-nav-inner {
     min-height: 56px;
-    padding: 8px 5%;
+    padding: 8px clamp(12px, 4vw, 24px);
+    gap: 8px;
   }
-  .floating-logo-img {
-    height: 34px;
-    max-width: 110px;
+  .floating-actions {
+    gap: 6px;
   }
   .floating-cart-btn {
-    padding: 6px 14px;
+    padding: 6px clamp(8px, 2vw, 10px);
     font-size: 13px;
   }
   .floating-cart-btn .cart-label {
@@ -3288,6 +3272,14 @@ body.mimo-off .hero-content {
 }
 
 @media (max-width: 440px) {
+  .section-nav-actions {
+    gap: 6px;
+  }
+
+  .header-action .cart-label {
+    display: none;
+  }
+
   .contact-card {
     padding: 24px 18px;
     border-radius: 20px;
@@ -3364,23 +3356,39 @@ body.mimo-off .hero-content {
   }
 }
 
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .section-nav,
+  .floating-nav-inner {
+    gap: 14px;
+  }
+
+  .section-links {
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .header-action {
+    padding-inline: 16px;
+  }
+
+  .floating-links {
+    gap: 6px;
+  }
+
+  .floating-link {
+    padding-inline: 9px;
+  }
+}
+
 @media (max-width: 700px) {
   .section-nav {
     padding-inline: clamp(12px, 4vw, 24px);
     gap: 8px;
   }
 
-  .brand {
-    min-width: 0;
-  }
-
-  .brand-logo-img {
-    max-width: 100%;
-  }
-
   .header-action {
     gap: 6px;
-    padding-inline: 10px;
+    padding-inline: clamp(8px, 2vw, 10px);
   }
 
   body.mimo-off .hero {
